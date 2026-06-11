@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Jemimah | Limitless</title>
+    <!-- Tailwind CSS for modern, sleek typography and layouts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js for the high-end 3D background effect -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght=0,300;0,400;0,600;0,800;1,400&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030408;
+            overflow-x: hidden;
+        }
+
+        /* Dark, immersive flower field background */
+        .flower-field-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 110vh; /* Extra height to allow smooth scroll parallax shifting */
+            /* High-quality, dark wildflower field image with a deep blue tint overlay */
+            background-image: linear-gradient(to bottom, rgba(3, 4, 8, 0.8), rgba(6, 9, 15, 0.96)), 
+                              url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        /* Glassmorphism overlays inspired by premium UI/UX design tools */
+        .glass-panel {
+            background: rgba(8, 11, 18, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Smooth custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06090f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2563eb;
+            border-radius: 3px;
+        }
+
+        /* JavaScript Scroll Reveal CSS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Blinking cursor for typewriter effect */
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: #60a5fa;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="text-slate-200 antialiased selection:bg-blue-600 selection:text-white">
+
+    <!-- Layer 1: Parallax Flower Field Background Image -->
+    <div class="flower-field-bg" id="field-bg"></div>
+
+    <!-- Layer 2: 3D Rotating Deep Blue Rose Petals Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Layer 3: Main Content Layer -->
+    <div class="content-layer min-h-screen flex flex-col justify-between">
+        
+        <!-- Header / Brand Element -->
+        <header class="w-full max-w-7xl mx-auto px-6 py-8 flex justify-between items-center reveal active">
+            <div class="text-xs font-bold tracking-[0.3em] text-blue-500 uppercase">Evolution // 2026</div>
+            <div class="h-[1px] flex-grow mx-6 bg-gradient-to-r from-blue-500/30 to-transparent hidden sm:block"></div>
+            <div class="text-xs tracking-widest text-slate-400 font-light">CELEBRATING JEMIMAH</div>
+        </header>
+
+        <!-- Main Section -->
+        <main class="w-full max-w-4xl mx-auto px-4 sm:px-6 my-auto py-12">
+            <div class="glass-panel p-8 sm:p-16 rounded-3xl shadow-2xl relative overflow-hidden group">
+                <!-- Subtle internal ambient glow -->
+                <div class="absolute -top-24 -left-24 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <!-- JS Typewriter Tagline -->
+                <div class="mb-8 reveal active">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20 uppercase tracking-wider">
+                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span> 
+                        <span id="typewriter-text"></span><span class="cursor"></span>
+                    </span>
+                </div>
+
+                <!-- Birthday Title Dedicated to Jemimah -->
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-8 leading-[1.1] reveal active">
+                    Happy Birthday, <span class="text-gradient">Jemimah</span>. <br>
+                    Own Your Horizon.
+                </h1>
+
+                <!-- The Speech Content (Using Scroll Reveal) -->
+                <div class="space-y-6 text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+                    <p class="reveal">
+                        Birthdays are frequently reduced to simple celebrations of time elapsed. But for an individual of your caliber, Jemimah, this day represents a fundamental point of acceleration. It is a calculated boundary line where your past achievements consolidate into an unshakeable platform for your next major breakthroughs.
+                    </p>
+                    <blockquote class="border-l-2 border-blue-500 pl-4 my-6 italic text-slate-400 font-normal reveal">
+                        "Do not measure your upcoming chapter by the standards of the ordinary. Your growth requires a wider canvas and bolder parameters."
+                    </blockquote>
+                    <p class="reveal">
+                        As you advance into this new year, know that every single one of your endeavors is backed by an immense capacity for execution, resilience, and brilliance. The goals you are pursuing are not mere possibilities—they are milestones waiting for your arrival. Step forward with total clarity and unyielding strategic focus.
+                    </p>
+                    <p class="reveal">
+                        May this year bring unmatched clarity to your vision, absolute velocity to your execution, and profound fulfillment to your journey. The horizon ahead doesn't just call to you; it belongs to you. Make no compromises, claim your space, and let the world witness your definition of excellence.
+                    </p>
+                </div>
+
+                <!-- Call to Action Footer inside the card -->
+                <div class="mt-12 pt-8 border-t border-slate-800/60 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 reveal">
+                    <div class="text-sm text-slate-400">
+                        Wishing you the absolute best in everything you build.
+                    </div>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" class="inline-flex items-center justify-center px-5 py-3 rounded-xl bg-gradient-to-r from-blue-700 to-blue-500 hover:from-blue-600 hover:to-blue-400 text-white font-medium text-sm transition-all duration-300 shadow-lg shadow-blue-950/40 hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+                        Return to Top
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="w-full max-w-7xl mx-auto px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-slate-900/50 text-xs text-slate-500 tracking-wider reveal">
+            <div>
+                <p class="font-semibold text-slate-400 uppercase mb-1">Target</p>
+                <p>Jemimah // Next Chapter</p>
+            </div>
+            <div>
+                <p class="font-semibold text-slate-400 uppercase mb-1">Engine</p>
+                <p>Three.js WebGL & Vanilla JS</p>
+            </div>
+            <div>
+                <p class="font-semibold text-slate-400 uppercase mb-1">Matrix</p>
+                <p>Deep Blue Petal Cascade</p>
+            </div>
+            <div class="text-right">
+                <p class="font-semibold text-slate-400 uppercase mb-1">Status</p>
+                <p class="text-blue-400 font-medium">Infinite Potential • 100%</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT: 3D ENGINE & UI INTERACTIONS    -->
+    <!-- ========================================== -->
+    <script>
+        // --- 1. JAVASCRIPT UI: TYPEWRITER EFFECT ---
+        const typewriterText = "Commence Chapter Next";
+        const typewriterElement = document.getElementById('typewriter-text');
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < typewriterText.length) {
+                typewriterElement.textContent += typewriterText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100); 
+            }
+        }
+        setTimeout(typeWriter, 800);
+
+
+        // --- 2. JAVASCRIPT UI: SCROLL REVEAL ANIMATIONS ---
+        const reveals = document.querySelectorAll('.reveal');
+        const observerOptions = {
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const scrollObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        reveals.forEach(reveal => {
+            scrollObserver.observe(reveal);
+        });
+
+
+        // --- 3. JAVASCRIPT 3D ENGINE: THREE.JS DEEP BLUE PETAL INSTANCING ---
+        const fieldBg = document.getElementById('field-bg');
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); 
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // CREATE A ROBUST 3D MESH REPRODUCING A NATURAL ROSE PETAL CURVATURE
+        const petalShape = new THREE.Shape();
+        petalShape.moveTo(0, 0);
+        petalShape.bezierCurveTo(0.5, 0.5, 0.7, 1.2, 0.3, 1.8);
+        petalShape.bezierCurveTo(0.0, 2.2, -0.6, 2.1, -0.8, 1.5);
+        petalShape.bezierCurveTo(-0.9, 0.9, -0.5, 0.3, 0, 0);
+
+        const extrudeSettings = { 
+            depth: 0.02, 
+            bevelEnabled: true, 
+            bevelSegments: 4, 
+            steps: 1, 
+            bevelSize: 0.04, 
+            bevelThickness: 0.04 
+        };
+        
+        const petalGeometry = new THREE.ExtrudeGeometry(petalShape, extrudeSettings);
+        petalGeometry.center();
+
+        // Custom Deep Blue Architectural Organic Material
+        const petalMaterial = new THREE.MeshPhongMaterial({
+            color: 0x0a369d,        // Core Deep Blue
+            shininess: 40,
+            specular: 0x47a8bd,     // Vivid sky/cyan blue reflection highlights
+            side: THREE.DoubleSide,
+            flatShading: true       // Retains sleek premium crystalline facet lines
+        });
+
+        // Generate Array of Individual Petals tracking unique parameters
+        const petals = [];
+        const petalCount = window.innerWidth < 768 ? 20 : 45; // Performance scaling density
+        
+        for (let i = 0; i < petalCount; i++) {
+            const mesh = new THREE.Mesh(petalGeometry, petalMaterial);
+            
+            // Random distribution through the coordinate matrix space
+            mesh.position.set(
+                (Math.random() - 0.5) * 12, // X Spread
+                (Math.random() * 12) - 4,   // Y Spread
+                (Math.random() - 0.5) * 5   // Z depth positioning
+            );
+            
+            // Random orientation allocations
+            mesh.rotation.set(
+                Math.random() * Math.PI,
+                Math.random() * Math.PI,
+                Math.random() * Math.PI
+            );
+
+            // Scale variation to simulate atmospheric depth
+            const scale = 0.2 + Math.random() * 0.35;
+            mesh.scale.set(scale, scale, scale);
+
+            // Assign unique kinetic paths variables
+            petals.push({
+                mesh: mesh,
+                speedY: 0.008 + Math.random() * 0.012,
+                spinX: (Math.random() - 0.5) * 0.02,
+                spinY: (Math.random() - 0.5) * 0.015,
+                spinZ: (Math.random() - 0.5) * 0.01,
+                swayOffset: Math.random() * 100
+            });
+
+            scene.add(mesh);
+        }
+
+        // Premium Studio Lighting Configuration calibrated for Deep Blue Spectrum
+        const ambientLight = new THREE.AmbientLight(0x060f26, 4.5);
+        scene.add(ambientLight);
+        
+        const primaryLight = new THREE.DirectionalLight(0x2563eb, 7); // Electrifying Blue Key Light
+        primaryLight.position.set(5, 8, 4);
+        scene.add(primaryLight);
+        
+        const accentFillLight = new THREE.PointLight(0x1d4ed8, 4, 25);
+        accentFillLight.position.set(-4, -4, 4);
+        scene.add(accentFillLight);
+
+        // Cyber Cyan rim edge backlighting highlight layer
+        const rimGlowLight = new THREE.DirectionalLight(0x00f5ff, 1.5);
+        rimGlowLight.position.set(-5, 5, -3);
+        scene.add(rimGlowLight);
+
+        camera.position.z = 6;
+
+        // Scroll Logic for Parallax Multiplier
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+            // Background field shift calculation
+            fieldBg.style.transform = `translateY(${-scrollY * 0.08}px)`;
+        });
+
+        // Window resize adapter matrix update
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Kinematic Animation Loop running fluidly at frame-rate limit
+        const clock = new THREE.Clock();
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+
+            petals.forEach(petal => {
+                // Descent vector physics loop
+                petal.mesh.position.y -= petal.petalCountY || petal.speedY;
+                
+                // Horizontal pendulum sway mimicking natural drift aerodynamics
+                petal.mesh.position.x += Math.sin(elapsedTime + petal.swayOffset) * 0.003;
+                
+                // Rotational continuous tumbling transformation tracking updates
+                petal.mesh.rotation.x += petal.spinX;
+                petal.mesh.rotation.y += petal.spinY;
+                petal.mesh.rotation.z += petal.spinZ;
+
+                // Adjust positioning dynamically depending on current page scroll position
+                petal.mesh.position.y -= (scrollY * 0.00005);
+
+                // Boundary reset loop - if petal leaves the screen bottom, recycle it to the top
+                if (petal.mesh.position.y < -6) {
+                    petal.mesh.position.y = 6;
+                    petal.mesh.position.x = (Math.random() - 0.5) * 12;
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
